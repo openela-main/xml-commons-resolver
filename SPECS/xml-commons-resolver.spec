@@ -1,10 +1,11 @@
 Name:           xml-commons-resolver
 Version:        1.2
-Release:        39%{?dist}
+Release:        42%{?dist}
 Summary:        Resolver subproject of xml-commons
 License:        ASL 2.0
 URL:            http://xerces.apache.org/xml-commons/components/resolver/
 BuildArch:      noarch
+ExclusiveArch:  aarch64 ppc64le s390x x86_64 noarch
 
 Source0:        http://www.apache.org/dist/xerces/xml-commons/%{name}-%{version}.tar.gz
 Source5:        %{name}-pom.xml
@@ -63,14 +64,24 @@ install -p -m 644 %{SOURCE7} ${RPM_BUILD_ROOT}%{_mandir}/man1/xml-xparse.1
 install -p -m 644 %{SOURCE8} ${RPM_BUILD_ROOT}%{_mandir}/man1/xml-xread.1
 
 %files -f .mfiles
-%doc KEYS LICENSE.resolver.txt NOTICE-resolver.txt
+%doc KEYS
+%license LICENSE.resolver.txt NOTICE-resolver.txt
 %{_mandir}/man1/*
 %{_bindir}/xml-*
 
 %files javadoc -f .mfiles-javadoc
-%doc LICENSE.resolver.txt NOTICE-resolver.txt
+%license LICENSE.resolver.txt NOTICE-resolver.txt
 
 %changelog
+* Wed Dec 04 2024 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.2-42
+- Install license files in licensedir instead of docdir
+
+* Sat Nov 23 2024 Marián Konček <mkoncek@redhat.com> - 1.2-41
+- Add noarch to ExclusiveArch
+
+* Fri Nov 22 2024 Marián Konček <mkoncek@redhat.com> - 1.2-40
+- Disable building on i686
+
 * Thu Nov 21 2024 Marián Konček <mkoncek@redhat.com> - 1.2-39
 - Fix patch usage
 
